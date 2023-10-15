@@ -1,0 +1,16 @@
+body {
+  --color-high: opacity(20%) invert(28%) sepia(97%) saturate(6187%) hue-rotate(356deg) brightness(92%) contrast(128%);
+  --color-mid: opacity(70%) invert(58%) sepia(12%) saturate(7196%) hue-rotate(2deg) brightness(105%) contrast(103%);
+  --color-low: opacity(70%) invert(79%) sepia(81%) saturate(526%) hue-rotate(356deg) brightness(102%) contrast(108%);
+}
+
+.body-frame {
+  position: relative;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: var(--color-high);
+}
