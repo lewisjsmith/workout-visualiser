@@ -10,10 +10,17 @@ import { useState, useEffect } from "react";
 import abs from "../../assets/Abs.png";
 import base from "../../assets/Base.png";
 import biceps from "../../assets/Biceps.png";
+import calves from "../../assets/Calves.png";
+import forearms from "../../assets/Forearms.png";
+import glutes from "../../assets/Glutes.png";
+import hamstrings from "../../assets/Hamstrings.png";
+import lats from "../../assets/Lats.png";
 import obliques from "../../assets/Obliques.png";
 import pectorals from "../../assets/Pectorals.png";
 import quadriceps from "../../assets/Quadriceps.png";
 import shoulders from "../../assets/Shoulders.png";
+import trapezius from "../../assets/Trapezius.png";
+import triceps from "../../assets/Triceps.png";
 
 export default function BodyFrame() {
 
@@ -22,10 +29,17 @@ export default function BodyFrame() {
 
     const [absLevel, setAbsLevel] = useState<number>(0);
     const [bicepsLevel, setBicepsLevel] = useState<number>(0);
+    const [calvesLevel, setCalvesLevel] = useState<number>(0);
+    const [forearmsLevel, setForearmsLevel] = useState<number>(0);
+    const [glutesLevel, setGlutesLevel] = useState<number>(0);
+    const [hamstringsLevel, setHamstringsLevel] = useState<number>(0);
+    const [latsLevel, setLatsLevel] = useState<number>(0);
     const [obliquesLevel, setObliquesLevel] = useState<number>(0);
     const [pectoralsLevel, setPectoralsLevel] = useState<number>(0);
     const [quadricepsLevel, setQuadricepsLevel] = useState<number>(0);
     const [shouldersLevel, setShouldersLevel] = useState<number>(0);
+    const [trapeziusLevel, setTrapeziusLevel] = useState<number>(0);
+    const [tricepsLevel, setTricepsLevel] = useState<number>(0);
 
     useEffect(() => {
         {
@@ -89,19 +103,33 @@ export default function BodyFrame() {
 
             {absLevel > 0 && <img src={abs} alt="" className="layer" style={{ opacity: `${absLevel * 10}%` }} />}
             {bicepsLevel > 0 && <img src={biceps} alt="" className="layer" style={{ opacity: `${bicepsLevel * 10}%` }} />}
+            {calvesLevel > 0 && <img src={calves} alt="" className="layer" style={{ opacity: `${calvesLevel * 10}%` }} />}
+            {forearmsLevel > 0 && <img src={forearms} alt="" className="layer" style={{ opacity: `${forearmsLevel * 10}%` }} />}
+            {glutesLevel > 0 && <img src={glutes} alt="" className="layer" style={{ opacity: `${glutesLevel * 10}%` }} />}
+            {hamstringsLevel > 0 && <img src={hamstrings} alt="" className="layer" style={{ opacity: `${hamstringsLevel * 10}%` }} />}
+            {latsLevel > 0 && <img src={lats} alt="" className="layer" style={{ opacity: `${latsLevel * 10}%` }} />}
             {obliquesLevel > 0 && <img src={obliques} alt="" className="layer" style={{ opacity: `${obliquesLevel * 10}%` }} />}
             {pectoralsLevel > 0 && <img src={pectorals} alt="" className="layer" style={{ opacity: `${pectoralsLevel * 10}%` }} />}
             {quadricepsLevel > 0 && <img src={quadriceps} alt="" className="layer" style={{ opacity: `${quadricepsLevel * 10}%` }} />}
             {shouldersLevel > 0 && <img src={shoulders} alt="" className="layer" style={{ opacity: `${shouldersLevel * 10}%` }} />}
+            {trapeziusLevel > 0 && <img src={trapezius} alt="" className="layer" style={{ opacity: `${trapeziusLevel * 10}%` }} />}
+            {tricepsLevel > 0 && <img src={triceps} alt="" className="layer" style={{ opacity: `${trapeziusLevel * 10}%` }} />}
 
             {highlighted &&
                 <div>
                     {highlighted.includes("abs") ? <img src={abs} alt="" className={getHighlightPriority(highlighted, "abs")} /> : null}
                     {highlighted.includes("biceps") ? <img src={biceps} alt="" className={getHighlightPriority(highlighted, "biceps")} /> : null}
+                    {highlighted.includes("calves") ? <img src={calves} alt="" className={getHighlightPriority(highlighted, "calves")} /> : null}
+                    {highlighted.includes("forearms") ? <img src={forearms} alt="" className={getHighlightPriority(highlighted, "forearms")} /> : null}
+                    {highlighted.includes("glutes") ? <img src={glutes} alt="" className={getHighlightPriority(highlighted, "glutes")} /> : null}
+                    {highlighted.includes("hamstrings") ? <img src={hamstrings} alt="" className={getHighlightPriority(highlighted, "hamstrings")} /> : null}
+                    {highlighted.includes("lats") ? <img src={lats} alt="" className={getHighlightPriority(highlighted, "lats")} /> : null}
                     {highlighted.includes("obliques") ? <img src={obliques} alt="" className={getHighlightPriority(highlighted, "obliques")} /> : null}
                     {highlighted.includes("chest") ? <img src={pectorals} alt="" className={getHighlightPriority(highlighted, "chest")} /> : null}
                     {highlighted.includes("quadriceps") ? <img src={quadriceps} alt="" className={getHighlightPriority(highlighted, "quadriceps")} /> : null}
                     {highlighted.includes("shoulders") ? <img src={shoulders} alt="" className={getHighlightPriority(highlighted, "shoulders")} /> : null}
+                    {highlighted.includes("trapezius") ? <img src={trapezius} alt="" className={getHighlightPriority(highlighted, "trapezius")} /> : null}
+                    {highlighted.includes("triceps") ? <img src={triceps} alt="" className={getHighlightPriority(highlighted, "triceps")} /> : null}
                 </div>
             }
         </div>

@@ -26,53 +26,160 @@ export function Exercise() {
     // musclesWorked are listed in order of intensity.
     function exerciseChange(value: string) {
         switch (value) {
+
+            case ("deadlift"):
+                setSelectedExercise({
+                    title: "Deadlift",
+                    musclesWorked: ["trapezius, glutes, abs"]
+                })
+                break;
+
+            case ("barbell-squat"):
+                setSelectedExercise({
+                    title: "Barbell Squat",
+                    musclesWorked: ["glutes", "hamstrings", "lats"]
+                })
+                break;
+
+            case ("pull-up"):
+                setSelectedExercise({
+                    title: "Pull Up",
+                    musclesWorked: ["lats", "trapezius", "biceps"]
+                })
+                break;
+
+            case ("bench-press"):
+                setSelectedExercise({
+                    title: "Bench Press",
+                    musclesWorked: ["chest", "shoulders", "triceps"]
+                })
+                break;
+
+            case ("lunge"):
+                setSelectedExercise({
+                    title: "Lunge",
+                    musclesWorked: ["glutes", "hamstrings", "quadriceps"]
+                })
+                break;
+
+            case ("bent-over-row"):
+                setSelectedExercise({
+                    title: "Bent-Over Row",
+                    musclesWorked: ["lats", "trapezius", "shoulders"]
+                })
+                break;
+
+            case ("farmers-walk"):
+                setSelectedExercise({
+                    title: "Farmers Walk",
+                    musclesWorked: ["glutes", "quadriceps", "hamstrings"]
+                })
+                break;
+
+            case ("glute-bridge"):
+                setSelectedExercise({
+                    title: "Glute Bridge",
+                    musclesWorked: ["glutes", "quadriceps", "hamstrings"]
+                })
+                break;
+
+            case ("goblet-squat"):
+                setSelectedExercise({
+                    title: "Goblet Squat",
+                    musclesWorked: ["glutes", "quadriceps", "hamstrings"]
+                })
+                break;
+
+            case ("face-pull"):
+                setSelectedExercise({
+                    title: "Face Pull",
+                    musclesWorked: ["shoulders", "trapezius", "lats"]
+                })
+                break;
+
+            case ("calf-raises"):
+                setSelectedExercise({
+                    title: "Calf Raises",
+                    musclesWorked: ["calves"]
+                })
+                break;
+
+            case ("kettle-bell-swing"):
+                setSelectedExercise({
+                    title: "Kettle-Bell Swing",
+                    musclesWorked: ["glutes", "hamstrings", "quadriceps"]
+                })
+                break;
+
+            case ("hip-thrust"):
+                setSelectedExercise({
+                    title: "Hip Thrust",
+                    musclesWorked: ["glutes", "quadriceps", "hamstrings"]
+                })
+                break;
+
             case ("shoulder-press"):
                 setSelectedExercise({
                     title: "Shoulder Press",
                     musclesWorked: ["shoulders", "chest"]
                 })
                 break;
+
             case ("sit-up"):
                 setSelectedExercise({
                     title: "Sit Up",
                     musclesWorked: ["abs", "", "obliques"]
                 })
                 break;
+
             case ("hammer-curl"):
                 setSelectedExercise({
                     title: "Hammer Curl",
                     musclesWorked: ["biceps", "forearms"]
                 })
                 break;
+
             case ("side-plank"):
                 setSelectedExercise({
                     title: "Side Plank",
                     musclesWorked: ["obliques", "abs"]
                 })
                 break;
+
             case ("push-up"):
                 setSelectedExercise({
                     title: "Push Up",
                     musclesWorked: ["chest", "", "shoulders"]
                 })
                 break;
+
             case ("leg-extension"):
                 setSelectedExercise({
                     title: "Leg Extension",
                     musclesWorked: ["quadriceps"]
                 })
                 break;
-            // biceps
-            // obliques (either side of centre abs)
-            // Abs
-            // quadriceps
-            // calves
-            // trapezius
-            // triceps
-            // lats
-            // gluteus
-            // hamstrings
 
+            case ("tricep-extension"):
+                setSelectedExercise({
+                    title: "Tricep Extension",
+                    musclesWorked: ["triceps"]
+                })
+                break;
+
+            case ("lateral-raise"):
+                setSelectedExercise({
+                    title: "Lateral Raise",
+                    musclesWorked: ["shoulders"]
+                })
+                break;
+
+            case ("chin-up"):
+                setSelectedExercise({
+                    title: "Chin Up",
+                    musclesWorked: ["biceps", "lats", "trapezius"]
+                })
+                
             default:
                 break;
         }
@@ -82,9 +189,9 @@ export function Exercise() {
         switch (value) {
             case (1):
                 return "Low";
-            case(2):
+            case (2):
                 return "Medium";
-            case(3):
+            case (3):
                 return "High";
             default:
                 return "Error";
@@ -96,13 +203,30 @@ export function Exercise() {
         <div>
 
             <label htmlFor="exercise-dropdown">Exercise: </label>
+
             <select name="exercise-dropdown" id="" onChange={e => exerciseChange(e.target.value)} defaultValue={"shoulder-press"}>
                 <option value="shoulder-press">Shoulder Press</option>
-                <option value="sit-up">Sit Up</option>
+                <option value="barbell-squat">Barbell Squat</option>
+                <option value="bench-press">Bench Press</option>
+                <option value="bent-over-row">Bent-Over Row</option>
+                <option value="calf-raises">Calf Raises</option>
+                <option value="chin-up">Chin Up</option>
+                <option value="deadlift">Deadlift</option>
+                <option value="face-pull">Face Pull</option>
+                <option value="farmers-walk">Farmers Walk</option>
+                <option value="glute-bridge">Glute Bridge</option>
+                <option value="goblet-squat">Goblet Squat</option>
                 <option value="hammer-curl">Hammer Curl</option>
-                <option value="side-plank">Side Plank</option>
-                <option value="push-up">Push Up</option>
+                <option value="hip-thrust">Hip Thrust</option>
+                <option value="kettle-bell-swing">Kettle-Bell Swing</option>
+                <option value="lateral-raise">Lateral Raise</option>
                 <option value="leg-extension">Leg Extension</option>
+                <option value="lunge">Lunge</option>
+                <option value="pull-up">Pull Up</option>
+                <option value="push-up">Push Up</option>
+                <option value="side-plank">Side Plank</option>
+                <option value="sit-up">Sit Up</option>
+                <option value="tricep-extension">Tricep Extension</option>
             </select>
 
             <label htmlFor="volume-dropdown">Volume: </label>
