@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import counterReducer from "../features/counter/counterSlice"
 import exerciseReducer from "../features/exercise/exerciseSlice"
+import bodyFrameReducer from "../features/bodyFrame/bodyFrameSlice"
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    exercise: exerciseReducer
+    exercise: exerciseReducer,
+    bodyFrame: bodyFrameReducer
   },
 })
 

@@ -1,7 +1,8 @@
 body {
   --color-high: invert(28%) sepia(97%) saturate(6187%) hue-rotate(356deg) brightness(92%) contrast(128%);
-  --color-mid: opacity(70%) invert(58%) sepia(12%) saturate(7196%) hue-rotate(2deg) brightness(105%) contrast(103%);
-  --color-low: opacity(70%) invert(79%) sepia(81%) saturate(526%) hue-rotate(356deg) brightness(102%) contrast(108%);
+  --color-mid: invert(58%) sepia(12%) saturate(7196%) hue-rotate(2deg) brightness(105%) contrast(103%);
+  --color-low: invert(79%) sepia(81%) saturate(526%) hue-rotate(356deg) brightness(102%) contrast(108%);
+  --color-highlight: invert(72%) sepia(33%) saturate(3721%) hue-rotate(55deg) brightness(112%) contrast(106%);
 }
 
 .body-frame {
@@ -13,4 +14,106 @@ body {
   top: 0;
   left: 0;
   filter: var(--color-high);
+}
+
+.layer-highlighted-high,
+.layer-highlighted-medium,
+.layer-highlighted-low {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: var(--color-highlight);
+
+  opacity: 0%;
+
+  animation-name: fadeInOutHigh;
+  animation-duration: 10s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.layer-highlighted-medium {
+  animation-name: fadeInOutMedium;
+}
+
+.layer-highlighted-low {
+  animation-name: fadeInOutLow;
+}
+
+@keyframes fadeInOutHigh {
+  0% {
+    opacity: 0%;
+  }
+
+  22% {
+    opacity: 0%;
+  }
+
+  50% {
+    opacity: 77%;
+  }
+
+  60% {
+    opacity: 77%;
+  }
+
+  88% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+
+@keyframes fadeInOutMedium {
+  0% {
+    opacity: 0%;
+  }
+
+  22% {
+    opacity: 0%;
+  }
+
+  50% {
+    opacity: 25%;
+  }
+
+  60% {
+    opacity: 25%;
+  }
+
+  88% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+
+@keyframes fadeInOutLow {
+  0% {
+    opacity: 0%;
+  }
+
+  22% {
+    opacity: 0%;
+  }
+
+  50% {
+    opacity: 15%;
+  }
+
+  60% {
+    opacity: 15%;
+  }
+
+  88% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
 }

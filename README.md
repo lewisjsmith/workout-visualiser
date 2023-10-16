@@ -15,4 +15,22 @@
 
 - Colour gradings from mild-severe. 
 - Minimal viable collection of popular workouts. 
-- Simultaneous muscles worked add stress in varying degrees.
+    - Make it easier to separate muscle groups on the drop-down.
+        - Dividers or multiple drop-downs that influence proceeding drop-down lists.
+- Save and load workouts using cookies.
+    - Allow workouts to be named.
+- Show affected muscles for a selected workout in the drop-down menu.
+    - Toggled with a checkbox.
+- Option to use a womans body diagram.
+    - Find a suitable template.
+    - Draw muscle groups.
+    - Toggle button. 
+- Styling.
+
+## Optional to-do ideas:
+
+- 3D model.
+- Sub-muscle groupings - e.g. bicep head delineation. 
+- On-screen warnings for muscles above a threshold. 
+- Ability for users to add custom exercises.
+

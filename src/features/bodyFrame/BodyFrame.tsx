@@ -3,6 +3,7 @@ import {
     ExercisePackage,
     selectExercise
 } from "../exercise/exerciseSlice";
+import { selectBodyFrame } from "./bodyFrameSlice";
 
 import { useState, useEffect } from "react";
 
@@ -17,6 +18,7 @@ import shoulders from "../../assets/Shoulders.png";
 export default function BodyFrame() {
 
     const exerciseList = useAppSelector(selectExercise);
+    const highlighted = useAppSelector(selectBodyFrame);
 
     const [absLevel, setAbsLevel] = useState<number>(0);
     const [bicepsLevel, setBicepsLevel] = useState<number>(0);
@@ -65,15 +67,43 @@ export default function BodyFrame() {
 
     }, [exerciseList])
 
+    function getHighlightPriority(arr: string[], value: string) {
+        switch (arr.indexOf(value) + 1) {
+            case (1):
+                return "layer-highlighted-high";
+                break;
+            case (2):
+                return "layer-highlighted-medium";
+                break;
+            case (3):
+                return "layer-highlighted-low";
+                break;
+            default:
+                break;
+        }
+    }
+
     return (
         <div className="body-frame">
             <img src={base} alt="" className="base" />
+
             {absLevel > 0 && <img src={abs} alt="" className="layer" style={{ opacity: `${absLevel * 10}%` }} />}
             {bicepsLevel > 0 && <img src={biceps} alt="" className="layer" style={{ opacity: `${bicepsLevel * 10}%` }} />}
             {obliquesLevel > 0 && <img src={obliques} alt="" className="layer" style={{ opacity: `${obliquesLevel * 10}%` }} />}
             {pectoralsLevel > 0 && <img src={pectorals} alt="" className="layer" style={{ opacity: `${pectoralsLevel * 10}%` }} />}
             {quadricepsLevel > 0 && <img src={quadriceps} alt="" className="layer" style={{ opacity: `${quadricepsLevel * 10}%` }} />}
             {shouldersLevel > 0 && <img src={shoulders} alt="" className="layer" style={{ opacity: `${shouldersLevel * 10}%` }} />}
+
+            {highlighted &&
+                <div>
+                    {highlighted.includes("abs") ? <img src={abs} alt="" className={getHighlightPriority(highlighted, "abs")} /> : null}
+                    {highlighted.includes("biceps") ? <img src={biceps} alt="" className={getHighlightPriority(highlighted, "biceps")} /> : null}
+                    {highlighted.includes("obliques") ? <img src={obliques} alt="" className={getHighlightPriority(highlighted, "obliques")} /> : null}
+                    {highlighted.includes("chest") ? <img src={pectorals} alt="" className={getHighlightPriority(highlighted, "chest")} /> : null}
+                    {highlighted.includes("quadriceps") ? <img src={quadriceps} alt="" className={getHighlightPriority(highlighted, "quadriceps")} /> : null}
+                    {highlighted.includes("shoulders") ? <img src={shoulders} alt="" className={getHighlightPriority(highlighted, "shoulders")} /> : null}
+                </div>
+            }
         </div>
     )
 }

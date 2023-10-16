@@ -5,7 +5,8 @@ import {
     selectExercise,
     IExercise
 } from "./exerciseSlice";
-import { useState } from "react";
+import { save } from "../bodyFrame/bodyFrameSlice";
+import { useState, useEffect } from "react";
 
 export function Exercise() {
 
@@ -17,6 +18,10 @@ export function Exercise() {
         musclesWorked: ["shoulders", "chest"]
     });
     const [selectedVolume, setSelectedVolume] = useState<number>(1);
+
+    useEffect(() => {
+        dispatch(save(selectedExercise.musclesWorked));
+    }, [selectedExercise])
 
     // musclesWorked are listed in order of intensity.
     function exerciseChange(value: string) {
