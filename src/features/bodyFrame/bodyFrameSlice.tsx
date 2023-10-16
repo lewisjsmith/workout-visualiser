@@ -3,10 +3,12 @@ import { RootState, AppThunk } from "../../app/store"
 
 export interface bodyFrameState {
     highlighted: Array<string>
+    toggle: boolean
 }
 
 const initialState: bodyFrameState = {
-    highlighted: []
+    highlighted: [],
+    toggle: true
 }
 
 export const bodyFrameSlice = createSlice({
@@ -15,13 +17,17 @@ export const bodyFrameSlice = createSlice({
     reducers: {
         save: (state, action: PayloadAction<Array<string>>) => {
             state.highlighted = action.payload;
+        },
+        toggle: (state, action: PayloadAction<boolean>) => {
+            state.toggle = action.payload;
         }
     }
 })
 
-export const { save } = bodyFrameSlice.actions;
+export const { save, toggle } = bodyFrameSlice.actions;
 
-export const selectBodyFrame = (state: RootState) => state.bodyFrame.highlighted;
+export const selectBodyFrameHighlighted = (state: RootState) => state.bodyFrame.highlighted;
+export const selectBodyFrameToggle = (state: RootState) => state.bodyFrame.toggle;
 
 export default bodyFrameSlice.reducer;
 

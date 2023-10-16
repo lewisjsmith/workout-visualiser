@@ -5,12 +5,13 @@ import {
     selectExercise,
     IExercise
 } from "./exerciseSlice";
-import { save } from "../bodyFrame/bodyFrameSlice";
+import { save, toggle, selectBodyFrameToggle } from "../bodyFrame/bodyFrameSlice";
 import { useState, useEffect } from "react";
 
 export function Exercise() {
 
     const exerciseList = useAppSelector(selectExercise);
+    const currentToggle = useAppSelector(selectBodyFrameToggle);
     const dispatch = useAppDispatch();
 
     const [selectedExercise, setSelectedExercise] = useState<IExercise>({
@@ -244,8 +245,8 @@ export function Exercise() {
                 ))
             }}>Add</button>
 
-            <h1>{selectedExercise?.title} {selectedExercise?.musclesWorked}</h1>
-            <h2>{selectedVolume}</h2>
+            <span>Exercise Preview: </span>
+            <input type="checkbox" defaultChecked onChange={(e) => {dispatch(toggle(!currentToggle))}}/>
 
             <ul>
                 {exerciseList.map(ex => {

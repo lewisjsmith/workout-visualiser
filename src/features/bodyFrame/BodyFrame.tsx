@@ -3,7 +3,7 @@ import {
     ExercisePackage,
     selectExercise
 } from "../exercise/exerciseSlice";
-import { selectBodyFrame } from "./bodyFrameSlice";
+import { selectBodyFrameToggle, selectBodyFrameHighlighted } from "./bodyFrameSlice";
 
 import { useState, useEffect } from "react";
 
@@ -25,7 +25,8 @@ import triceps from "../../assets/Triceps.png";
 export default function BodyFrame() {
 
     const exerciseList = useAppSelector(selectExercise);
-    const highlighted = useAppSelector(selectBodyFrame);
+    const highlighted = useAppSelector(selectBodyFrameHighlighted);
+    const toggle = useAppSelector(selectBodyFrameToggle);
 
     const [absLevel, setAbsLevel] = useState<number>(0);
     const [bicepsLevel, setBicepsLevel] = useState<number>(0);
@@ -115,7 +116,7 @@ export default function BodyFrame() {
             {trapeziusLevel > 0 && <img src={trapezius} alt="" className="layer" style={{ opacity: `${trapeziusLevel * 10}%` }} />}
             {tricepsLevel > 0 && <img src={triceps} alt="" className="layer" style={{ opacity: `${trapeziusLevel * 10}%` }} />}
 
-            {highlighted &&
+            {highlighted && toggle &&
                 <div>
                     {highlighted.includes("abs") ? <img src={abs} alt="" className={getHighlightPriority(highlighted, "abs")} /> : null}
                     {highlighted.includes("biceps") ? <img src={biceps} alt="" className={getHighlightPriority(highlighted, "biceps")} /> : null}
