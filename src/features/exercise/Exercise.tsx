@@ -73,6 +73,19 @@ export function Exercise() {
         }
     }
 
+    function volumeIntToString(value: number) {
+        switch (value) {
+            case (1):
+                return "Low";
+            case(2):
+                return "Medium";
+            case(3):
+                return "High";
+            default:
+                return "Error";
+        }
+    }
+
     return (
 
         <div>
@@ -104,6 +117,18 @@ export function Exercise() {
 
             <h1>{selectedExercise?.title} {selectedExercise?.musclesWorked}</h1>
             <h2>{selectedVolume}</h2>
+
+            <ul>
+                {exerciseList.map(ex => {
+                    return <li key={ex.id}>
+                        <span>Exercise: {ex.package.exercise.title} </span>
+                        <span>Volume: {volumeIntToString(ex.package.volume)} </span>
+                        <button onClick={() => {
+                            dispatch(remove(ex.id))
+                        }}>Remove</button>
+                    </li>
+                })}
+            </ul>
 
         </div>
     )
