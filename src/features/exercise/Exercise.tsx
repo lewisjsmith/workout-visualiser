@@ -18,6 +18,7 @@ export function Exercise() {
     });
     const [selectedVolume, setSelectedVolume] = useState<number>(1);
 
+    // musclesWorked are listed in order of intensity.
     function exerciseChange(value: string) {
         switch (value) {
             case ("shoulder-press"):
@@ -26,11 +27,47 @@ export function Exercise() {
                     musclesWorked: ["shoulders", "chest"]
                 })
                 break;
+            case ("sit-up"):
+                setSelectedExercise({
+                    title: "Sit Up",
+                    musclesWorked: ["abs", "", "obliques"]
+                })
+                break;
+            case ("hammer-curl"):
+                setSelectedExercise({
+                    title: "Hammer Curl",
+                    musclesWorked: ["biceps", "forearms"]
+                })
+                break;
+            case ("side-plank"):
+                setSelectedExercise({
+                    title: "Side Plank",
+                    musclesWorked: ["obliques", "abs"]
+                })
+                break;
             case ("push-up"):
                 setSelectedExercise({
                     title: "Push Up",
-                    musclesWorked: ["chest", "shoulders"]
+                    musclesWorked: ["chest", "", "shoulders"]
                 })
+                break;
+            case ("leg-extension"):
+                setSelectedExercise({
+                    title: "Leg Extension",
+                    musclesWorked: ["quadriceps"]
+                })
+                break;
+            // biceps
+            // obliques (either side of centre abs)
+            // Abs
+            // quadriceps
+            // calves
+            // trapezius
+            // triceps
+            // lats
+            // gluteus
+            // hamstrings
+
             default:
                 break;
         }
@@ -39,15 +76,24 @@ export function Exercise() {
     return (
 
         <div>
-            <select name="" id="" onChange={e => exerciseChange(e.target.value)} defaultValue={"shoulder-press"}>
+
+            <label htmlFor="exercise-dropdown">Exercise: </label>
+            <select name="exercise-dropdown" id="" onChange={e => exerciseChange(e.target.value)} defaultValue={"shoulder-press"}>
                 <option value="shoulder-press">Shoulder Press</option>
-                <option value="push-up">Push up</option>
+                <option value="sit-up">Sit Up</option>
+                <option value="hammer-curl">Hammer Curl</option>
+                <option value="side-plank">Side Plank</option>
+                <option value="push-up">Push Up</option>
+                <option value="leg-extension">Leg Extension</option>
             </select>
-            <select name="" id="" onChange={e => setSelectedVolume(parseInt(e.target.value))} defaultValue={1}>
+
+            <label htmlFor="volume-dropdown">Volume: </label>
+            <select name="volume-dropdown" id="" onChange={e => setSelectedVolume(parseInt(e.target.value))} defaultValue={1}>
                 <option value={1}>Low</option>
                 <option value={2}>Medium</option>
                 <option value={3}>High</option>
             </select>
+
             <button onClick={() => {
                 dispatch(add({
                     exercise: selectedExercise,
