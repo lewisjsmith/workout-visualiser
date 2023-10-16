@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState, AppThunk } from "../../app/store"
+import {v4 as uuidv4} from 'uuid';
 
 export interface IExercise {
     title: string
@@ -12,7 +13,7 @@ export interface ExerciseChoice {
 }
 
 export interface ExercisePackage {
-    id: number
+    id: string
     package: ExerciseChoice
 }
 
@@ -30,7 +31,7 @@ export const exerciseSlice = createSlice({
     reducers: {
         add: (state, action: PayloadAction<ExerciseChoice>) => {
             state.exerciseList.push({
-                id: state.exerciseList.length + 1,
+                id: uuidv4(),
                 package: {
                     exercise: action.payload.exercise,
                     volume: action.payload.volume
@@ -38,7 +39,7 @@ export const exerciseSlice = createSlice({
             });
             console.log(state.exerciseList);
         },
-        remove: (state, action: PayloadAction<number>) => {
+        remove: (state, action: PayloadAction<string>) => {
             state.exerciseList = state.exerciseList.filter(e => e.id !== action.payload)
         }
     }

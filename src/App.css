@@ -1,3 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root,
+.app {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   --color-high: invert(28%) sepia(97%) saturate(6187%) hue-rotate(356deg) brightness(92%) contrast(128%);
   --color-mid: invert(58%) sepia(12%) saturate(7196%) hue-rotate(2deg) brightness(105%) contrast(103%);
@@ -5,8 +18,174 @@ body {
   --color-highlight: invert(72%) sepia(33%) saturate(3721%) hue-rotate(55deg) brightness(112%) contrast(106%);
 }
 
+#root {}
+
+.app {
+  box-sizing: border-box;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  gap: 1rem;
+}
+
+.page-title {
+  font-style: italic;
+}
+
+.exercise-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  gap: 1rem;
+}
+
+.exercise-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exercise-menu div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exercise-menu select {
+  box-sizing: border-box;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+.exercise-menu button {
+  outline: solid rgb(255, 255, 255) 1px;
+  outline-offset: -1px;
+  background-color: rgb(14, 223, 59);
+  color: white;
+}
+
+.exercise-menu button:hover {
+  background-color: rgb(13, 204, 54);
+  transform: scale(1.05);
+}
+
+button {
+  box-sizing: border-box;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: rgb(196, 196, 196);
+  cursor: pointer;
+}
+
+.exercise-list {
+  list-style: none;
+  text-indent: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  max-height: 8rem;
+  overflow-y: scroll;
+}
+
+.exercise-list li {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.exercise-list li button {
+  outline: solid rgb(255, 255, 255) 1px;
+  outline-offset: -1px;
+  background-color: rgb(255, 148, 148);
+  color: white;
+}
+
+.exercise-list li button:hover {
+  background-color: rgb(255, 103, 103);
+  transform: scale(1.05);
+}
+
+.exercise-menu,
+.exercise-list {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+  background-color: rgb(252, 252, 252);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.233);
+}
+
 .body-frame {
   position: relative;
+  object-fit: contain;
+}
+
+.base,
+.layer,
+.layer-highlighted-high,
+.layer-highlighted-medium,
+.layer-highlighted-low {
+  max-width: 100%;
+}
+
+@media (min-width: 700px) {
+  .app {
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    grid-template-columns: 1fr 1fr;
+
+    padding: 3rem;
+    object-fit: contain;
+  }
+
+  .page-title {
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    justify-self: center;
+    align-self: center;
+  }
+
+  .exercise-wrapper {
+    justify-self: center;
+    align-self: flex-start;
+    box-sizing: border-box;
+    padding: 1rem;
+  }
+
+  .exercise-list {
+    max-height: 45vh;
+  }
+
+  .exercise-list li {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+
+  .body-frame {
+    justify-self: center;
+    align-self: flex-start;
+  }
+
 }
 
 .layer {

@@ -180,7 +180,7 @@ export function Exercise() {
                     title: "Chin Up",
                     musclesWorked: ["biceps", "lats", "trapezius"]
                 })
-                
+
             default:
                 break;
         }
@@ -201,58 +201,69 @@ export function Exercise() {
 
     return (
 
-        <div>
+        <div className="exercise-wrapper">
 
-            <label htmlFor="exercise-dropdown">Exercise: </label>
+            <div className="exercise-menu">
 
-            <select name="exercise-dropdown" id="" onChange={e => exerciseChange(e.target.value)} defaultValue={"shoulder-press"}>
-                <option value="shoulder-press">Shoulder Press</option>
-                <option value="barbell-squat">Barbell Squat</option>
-                <option value="bench-press">Bench Press</option>
-                <option value="bent-over-row">Bent-Over Row</option>
-                <option value="calf-raises">Calf Raises</option>
-                <option value="chin-up">Chin Up</option>
-                <option value="deadlift">Deadlift</option>
-                <option value="face-pull">Face Pull</option>
-                <option value="farmers-walk">Farmers Walk</option>
-                <option value="glute-bridge">Glute Bridge</option>
-                <option value="goblet-squat">Goblet Squat</option>
-                <option value="hammer-curl">Hammer Curl</option>
-                <option value="hip-thrust">Hip Thrust</option>
-                <option value="kettle-bell-swing">Kettle-Bell Swing</option>
-                <option value="lateral-raise">Lateral Raise</option>
-                <option value="leg-extension">Leg Extension</option>
-                <option value="lunge">Lunge</option>
-                <option value="pull-up">Pull Up</option>
-                <option value="push-up">Push Up</option>
-                <option value="side-plank">Side Plank</option>
-                <option value="sit-up">Sit Up</option>
-                <option value="tricep-extension">Tricep Extension</option>
-            </select>
+                <div>
+                    <label htmlFor="exercise-dropdown" style={{fontWeight: "bold"}}>Exercise: </label>
+                    <select name="exercise-dropdown" id="" onChange={e => exerciseChange(e.target.value)} defaultValue={"shoulder-press"}>
+                        <option value="shoulder-press">Shoulder Press</option>
+                        <option value="barbell-squat">Barbell Squat</option>
+                        <option value="bench-press">Bench Press</option>
+                        <option value="bent-over-row">Bent-Over Row</option>
+                        <option value="calf-raises">Calf Raises</option>
+                        <option value="chin-up">Chin Up</option>
+                        <option value="deadlift">Deadlift</option>
+                        <option value="face-pull">Face Pull</option>
+                        <option value="farmers-walk">Farmers Walk</option>
+                        <option value="glute-bridge">Glute Bridge</option>
+                        <option value="goblet-squat">Goblet Squat</option>
+                        <option value="hammer-curl">Hammer Curl</option>
+                        <option value="hip-thrust">Hip Thrust</option>
+                        <option value="kettle-bell-swing">Kettle-Bell Swing</option>
+                        <option value="lateral-raise">Lateral Raise</option>
+                        <option value="leg-extension">Leg Extension</option>
+                        <option value="lunge">Lunge</option>
+                        <option value="pull-up">Pull Up</option>
+                        <option value="push-up">Push Up</option>
+                        <option value="side-plank">Side Plank</option>
+                        <option value="sit-up">Sit Up</option>
+                        <option value="tricep-extension">Tricep Extension</option>
+                    </select>
+                </div>
 
-            <label htmlFor="volume-dropdown">Volume: </label>
-            <select name="volume-dropdown" id="" onChange={e => setSelectedVolume(parseInt(e.target.value))} defaultValue={1}>
-                <option value={1}>Low</option>
-                <option value={2}>Medium</option>
-                <option value={3}>High</option>
-            </select>
+                <div>
+                    <label htmlFor="volume-dropdown" style={{fontWeight: "bold"}}>Volume: </label>
+                    <select name="volume-dropdown" id="" onChange={e => setSelectedVolume(parseInt(e.target.value))} defaultValue={1}>
+                        <option value={1}>Low</option>
+                        <option value={2}>Medium</option>
+                        <option value={3}>High</option>
+                    </select>
+                </div>
 
-            <button onClick={() => {
-                dispatch(add({
-                    exercise: selectedExercise,
-                    volume: selectedVolume
-                }
-                ))
-            }}>Add</button>
 
-            <span>Exercise Preview: </span>
-            <input type="checkbox" defaultChecked onChange={(e) => {dispatch(toggle(!currentToggle))}}/>
+                <button onClick={() => {
+                    dispatch(add({
+                        exercise: selectedExercise,
+                        volume: selectedVolume
+                    }
+                    ))
+                }}>Add</button>
+            </div>
 
-            <ul>
+            <div style={{width: "100%", display: "flex", justifyContent: "flex-end", gap: "0.5rem"}}>
+                <span>Exercise Preview: </span>
+                <input type="checkbox" defaultChecked onChange={(e) => { dispatch(toggle(!currentToggle)) }} />
+            </div>
+
+
+            <ul className="exercise-list">
+                <li><span style={{ fontWeight: "bold" }}>Exercise</span><span style={{ fontWeight: "bold" }}>Volume</span></li>
                 {exerciseList.map(ex => {
                     return <li key={ex.id}>
-                        <span>Exercise: {ex.package.exercise.title} </span>
-                        <span>Volume: {volumeIntToString(ex.package.volume)} </span>
+                        <span>{ex.package.exercise.title}</span>
+                        <span>{volumeIntToString(ex.package.volume)}</span>
                         <button onClick={() => {
                             dispatch(remove(ex.id))
                         }}>Remove</button>

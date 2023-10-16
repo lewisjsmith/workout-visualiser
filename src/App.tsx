@@ -6,10 +6,10 @@ import BodyFrame from "./features/bodyFrame/BodyFrame"
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
+      <h1 className="page-title">Workout Visualiser</h1>
       <Exercise />
       <BodyFrame />
-
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
