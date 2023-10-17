@@ -46,10 +46,17 @@ export default function BodyFrame() {
         {
             let absTemp = 0
             let bicepsTemp = 0
+            let calvesTemp = 0
+            let forearmsTemp = 0
+            let glutesTemp = 0
+            let hamstringsTemp = 0
+            let latsTemp = 0
             let obliquesTemp = 0
             let pectoralsTemp = 0
             let quadricepsTemp = 0
             let shouldersTemp = 0
+            let trapeziusTemp = 0
+            let tricepsLevel = 0
 
             exerciseList.map((exercise: ExercisePackage) => {
                 if (exercise.package.exercise.musclesWorked.includes("abs")) {
@@ -57,6 +64,21 @@ export default function BodyFrame() {
                 }
                 if (exercise.package.exercise.musclesWorked.includes("biceps")) {
                     bicepsTemp = (bicepsTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("biceps") + 1)));
+                }
+                if (exercise.package.exercise.musclesWorked.includes("calves")) {
+                    calvesTemp = (calvesTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("calves") + 1)));
+                }
+                if (exercise.package.exercise.musclesWorked.includes("forearms")) {
+                    forearmsTemp = (forearmsTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("forearms") + 1)));
+                }
+                if (exercise.package.exercise.musclesWorked.includes("glutes")) {
+                    glutesTemp = (glutesTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("glutes") + 1)));
+                }
+                if (exercise.package.exercise.musclesWorked.includes("hamstrings")) {
+                    hamstringsTemp = (hamstringsTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("hamstrings") + 1)));
+                }
+                if (exercise.package.exercise.musclesWorked.includes("biceplatss")) {
+                    latsTemp = (latsTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("lats") + 1)));
                 }
                 if (exercise.package.exercise.musclesWorked.includes("obliques")) {
                     obliquesTemp = (obliquesTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("obliques") + 1)));
@@ -70,14 +92,27 @@ export default function BodyFrame() {
                 if (exercise.package.exercise.musclesWorked.includes("shoulders")) {
                     shouldersTemp = (shouldersTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("shoulders") + 1)));
                 }
+                if (exercise.package.exercise.musclesWorked.includes("trapezius")) {
+                    trapeziusTemp = (trapeziusTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("trapezius") + 1)));
+                }
+                if (exercise.package.exercise.musclesWorked.includes("triceps")) {
+                    tricepsLevel = (tricepsLevel + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("triceps") + 1)));
+                }
             })
 
             setAbsLevel(absTemp);
             setBicepsLevel(bicepsTemp);
+            setCalvesLevel(calvesTemp);
+            setForearmsLevel(forearmsTemp);
+            setGlutesLevel(glutesTemp);
+            setHamstringsLevel(hamstringsTemp);
+            setLatsLevel(latsTemp);
             setObliquesLevel(obliquesTemp);
             setPectoralsLevel(pectoralsTemp);
             setQuadricepsLevel(quadricepsTemp);
             setShouldersLevel(shouldersTemp);
+            setTrapeziusLevel(trapeziusTemp);
+            setTricepsLevel(tricepsLevel);
         }
 
     }, [exerciseList])
