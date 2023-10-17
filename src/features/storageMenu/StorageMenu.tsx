@@ -68,7 +68,7 @@ export function StorageMenu() {
                     }}>
                         <input name="workout-name" type="text" onChange={(e) => setSaveName(e.target.value)} />
                         <button onClick={() => {
-                            saveWorkout(saveName, currentWorkout);
+                            saveName.length > 0 ? saveWorkout(saveName, currentWorkout) : {}
                         }}>Save</button>
                     </div>
                     {/* Add length checks */}
@@ -92,10 +92,11 @@ export function StorageMenu() {
                         return (
                             <li key={work}>
                                 {work}
-                                <button onClick={() => loadWorkout(work)
-                                }>Load</button>
                                 <button onClick={() => {
-                                    deleteWorkout(work)
+                                    work ? loadWorkout(work) : {}
+                                }}>Load</button>
+                                <button onClick={() => {
+                                    work ? deleteWorkout(work) : {}
                                 }}>Delete</button>
                             </li>);
                     })}
