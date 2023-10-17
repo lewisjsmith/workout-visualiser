@@ -32,7 +32,7 @@ export function Exercise() {
             case ("deadlift"):
                 setSelectedExercise({
                     title: "Deadlift",
-                    musclesWorked: ["trapezius, glutes, abs"]
+                    musclesWorked: ["trapezius", "glutes", "abs"]
                 })
                 break;
 
