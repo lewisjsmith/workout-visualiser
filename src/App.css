@@ -20,6 +20,10 @@ body {
 
 #root {}
 
+h1 {
+  font-size: 27px;
+}
+
 .app {
   box-sizing: border-box;
   padding: 2rem;
