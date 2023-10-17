@@ -6,6 +6,7 @@ import {
     IExercise
 } from "./exerciseSlice";
 import { save, toggle, selectBodyFrameToggle } from "../bodyFrame/bodyFrameSlice";
+import { toggleMenu, toggleSave, toggleLoad } from "../storageMenu/storageMenuSlice";
 import { useState, useEffect } from "react";
 
 export function Exercise() {
@@ -206,7 +207,7 @@ export function Exercise() {
             <div className="exercise-menu">
 
                 <div>
-                    <label htmlFor="exercise-dropdown" style={{fontWeight: "bold"}}>Exercise: </label>
+                    <label htmlFor="exercise-dropdown" style={{ fontWeight: "bold" }}>Exercise: </label>
                     <select name="exercise-dropdown" id="" onChange={e => exerciseChange(e.target.value)} defaultValue={"shoulder-press"}>
                         <option value="shoulder-press">Shoulder Press</option>
                         <option value="barbell-squat">Barbell Squat</option>
@@ -234,7 +235,7 @@ export function Exercise() {
                 </div>
 
                 <div>
-                    <label htmlFor="volume-dropdown" style={{fontWeight: "bold"}}>Volume: </label>
+                    <label htmlFor="volume-dropdown" style={{ fontWeight: "bold" }}>Volume: </label>
                     <select name="volume-dropdown" id="" onChange={e => setSelectedVolume(parseInt(e.target.value))} defaultValue={1}>
                         <option value={1}>Low</option>
                         <option value={2}>Medium</option>
@@ -252,9 +253,19 @@ export function Exercise() {
                 }}>Add</button>
             </div>
 
-            <div style={{width: "100%", display: "flex", justifyContent: "flex-end", gap: "0.5rem"}}>
-                <span>Exercise Preview: </span>
-                <input type="checkbox" defaultChecked onChange={(e) => { dispatch(toggle(!currentToggle)) }} />
+            <div style={{ width: "100%", display: "flex", justifyContent: "space-between", gap: "0.5rem" }}>
+                <div style={{ width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center", gap: "0.5rem" }}>
+                    <span>Exercise Preview: </span>
+                    <input type="checkbox" defaultChecked onChange={(e) => { dispatch(toggle(!currentToggle)) }} />
+                </div>
+                <button onClick={() => {
+                    dispatch(toggleMenu(true))
+                    dispatch(toggleSave(true))
+                }}>Save</button>
+                <button onClick={() => {
+                    dispatch(toggleMenu(true))
+                    dispatch(toggleLoad(true))
+                }}>Load</button>
             </div>
 
 

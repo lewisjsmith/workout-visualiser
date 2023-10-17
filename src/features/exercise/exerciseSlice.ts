@@ -37,15 +37,17 @@ export const exerciseSlice = createSlice({
                     volume: action.payload.volume
                 }
             });
-            console.log(state.exerciseList);
         },
         remove: (state, action: PayloadAction<string>) => {
             state.exerciseList = state.exerciseList.filter(e => e.id !== action.payload)
+        }, 
+        set: (state, action: PayloadAction<Array<ExercisePackage>>) => {
+            state.exerciseList = action.payload;
         }
     }
 })
 
-export const { add, remove } = exerciseSlice.actions;
+export const { add, remove, set } = exerciseSlice.actions;
 
 export const selectExercise = (state: RootState) => state.exercise.exerciseList;
 

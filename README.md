@@ -17,13 +17,17 @@
 - ~~Minimal viable collection of popular workouts.~~
     - Make it easier to separate muscle groups on the drop-down.
         - Dividers or multiple drop-downs that influence proceeding drop-down lists.
-- Save and load workouts using cookies.
-    - Allow workouts to be named.
+- ~~Save and load workouts using localStorage.~~
+    - ~~Allow workouts to be named.~~
+        - Regex checks to bind lengths between 1 and 15.
+    - Save workout between page refreshes.
+    - Generate URLs and load workouts from the URL.
 - Option to use a womans body diagram.
     - Find a suitable template.
     - Draw muscle groups.
     - Toggle button. 
 - Styling.
+    - Save and Load menu responsive styling.
 
 ## Optional to-do ideas:
 
