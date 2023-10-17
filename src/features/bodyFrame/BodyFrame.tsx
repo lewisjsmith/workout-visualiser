@@ -149,7 +149,7 @@ export default function BodyFrame() {
             {quadricepsLevel > 0 && <img src={quadriceps} alt="" className="layer" style={{ opacity: `${quadricepsLevel * 10}%` }} />}
             {shouldersLevel > 0 && <img src={shoulders} alt="" className="layer" style={{ opacity: `${shouldersLevel * 10}%` }} />}
             {trapeziusLevel > 0 && <img src={trapezius} alt="" className="layer" style={{ opacity: `${trapeziusLevel * 10}%` }} />}
-            {tricepsLevel > 0 && <img src={triceps} alt="" className="layer" style={{ opacity: `${trapeziusLevel * 10}%` }} />}
+            {tricepsLevel > 0 && <img src={triceps} alt="" className="layer" style={{ opacity: `${tricepsLevel * 10}%` }} />}
 
             {highlighted && toggle &&
                 <div>
