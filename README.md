@@ -1,5 +1,7 @@
 # Workout Visualiser
 
+## Live site available at: https://lewisjsmith.github.io/workout-visualiser/
+
 ## Aims:
 
 - Visualise the muscles targeted when creating a workout.
