@@ -1,4 +1,19 @@
-export const exerciseName = {
+import {IExercise} from "./exerciseSlice";
+
+interface IExerciseCode {
+    musclesWorked: Array<string>,
+    id: string
+}
+
+interface IExerciseId {
+    [key: string]: IExercise
+}
+
+export interface IExerciseName {
+    [key: string]: IExerciseCode;
+}
+
+export const exerciseName: IExerciseName = {
     "deadlift":
     {
         musclesWorked: ["trapezius", "glutes", "abs"],
@@ -128,7 +143,7 @@ export const exerciseName = {
     }
 }
 
-export const exerciseId = {
+export const exerciseId: IExerciseId = {
     "1":
     {
         title: "deadlift",

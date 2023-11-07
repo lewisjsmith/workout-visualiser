@@ -8,7 +8,7 @@ import {
 import { save, toggle, selectBodyFrameToggle } from "../bodyFrame/bodyFrameSlice";
 import { toggleMenu, toggleSave, toggleLoad } from "../storageMenu/storageMenuSlice";
 import { useState, useEffect } from "react";
-import { exerciseName, exerciseId } from "./lookup";
+import { exerciseName } from "./lookup";
 
 export function Exercise() {
 
@@ -222,9 +222,9 @@ export function Exercise() {
             query = query + "?plan=";
 
             for (let i = 0; i < n; i++) {
-                const name = exerciseList[i]["package"]["exercise"].title;
+                const name: keyof typeof exerciseName = exerciseList[i]["package"]["exercise"]["title"];
                 const volume = exerciseList[i].package.volume;
-                const id = exerciseName[name].id;
+                const id = exerciseName[name]["id"];
                 query = query + `${id}v${volume}`;
             }
 
