@@ -8,6 +8,7 @@ import {
 import { save, toggle, selectBodyFrameToggle } from "../bodyFrame/bodyFrameSlice";
 import { toggleMenu, toggleSave, toggleLoad } from "../storageMenu/storageMenuSlice";
 import { useState, useEffect } from "react";
+import { exerciseName, exerciseId } from "./lookup";
 
 export function Exercise() {
 
@@ -27,164 +28,172 @@ export function Exercise() {
 
     // musclesWorked are listed in order of intensity.
     function exerciseChange(value: string) {
-        switch (value) {
 
-            case ("deadlift"):
-                setSelectedExercise({
-                    title: "Deadlift",
-                    musclesWorked: ["trapezius", "glutes", "abs"]
-                })
-                break;
+        const {title, musclesWorked} = {...exerciseName[value]};
 
-            case ("barbell-squat"):
-                setSelectedExercise({
-                    title: "Barbell Squat",
-                    musclesWorked: ["glutes", "hamstrings", "lats"]
-                })
-                break;
+        setSelectedExercise({
+            title: title,
+            musclesWorked: musclesWorked
+        })
 
-            case ("pull-up"):
-                setSelectedExercise({
-                    title: "Pull Up",
-                    musclesWorked: ["lats", "trapezius", "biceps"]
-                })
-                break;
+        // switch (value) {
 
-            case ("bench-press"):
-                setSelectedExercise({
-                    title: "Bench Press",
-                    musclesWorked: ["chest", "shoulders", "triceps"]
-                })
-                break;
+        //     case ("deadlift"):
+        //         setSelectedExercise({
+        //             title: "Deadlift",
+        //             musclesWorked: ["trapezius", "glutes", "abs"]
+        //         })
+        //         break;
 
-            case ("lunge"):
-                setSelectedExercise({
-                    title: "Lunge",
-                    musclesWorked: ["glutes", "hamstrings", "quadriceps"]
-                })
-                break;
+        //     case ("barbell-squat"):
+        //         setSelectedExercise({
+        //             title: "Barbell Squat",
+        //             musclesWorked: ["glutes", "hamstrings", "lats"]
+        //         })
+        //         break;
 
-            case ("bent-over-row"):
-                setSelectedExercise({
-                    title: "Bent-Over Row",
-                    musclesWorked: ["lats", "trapezius", "shoulders"]
-                })
-                break;
+        //     case ("pull-up"):
+        //         setSelectedExercise({
+        //             title: "Pull Up",
+        //             musclesWorked: ["lats", "trapezius", "biceps"]
+        //         })
+        //         break;
 
-            case ("farmers-walk"):
-                setSelectedExercise({
-                    title: "Farmers Walk",
-                    musclesWorked: ["glutes", "quadriceps", "hamstrings"]
-                })
-                break;
+        //     case ("bench-press"):
+        //         setSelectedExercise({
+        //             title: "Bench Press",
+        //             musclesWorked: ["chest", "shoulders", "triceps"]
+        //         })
+        //         break;
 
-            case ("glute-bridge"):
-                setSelectedExercise({
-                    title: "Glute Bridge",
-                    musclesWorked: ["glutes", "quadriceps", "hamstrings"]
-                })
-                break;
+        //     case ("lunge"):
+        //         setSelectedExercise({
+        //             title: "Lunge",
+        //             musclesWorked: ["glutes", "hamstrings", "quadriceps"]
+        //         })
+        //         break;
 
-            case ("goblet-squat"):
-                setSelectedExercise({
-                    title: "Goblet Squat",
-                    musclesWorked: ["glutes", "quadriceps", "hamstrings"]
-                })
-                break;
+        //     case ("bent-over-row"):
+        //         setSelectedExercise({
+        //             title: "Bent-Over Row",
+        //             musclesWorked: ["lats", "trapezius", "shoulders"]
+        //         })
+        //         break;
 
-            case ("face-pull"):
-                setSelectedExercise({
-                    title: "Face Pull",
-                    musclesWorked: ["shoulders", "trapezius", "lats"]
-                })
-                break;
+        //     case ("farmers-walk"):
+        //         setSelectedExercise({
+        //             title: "Farmers Walk",
+        //             musclesWorked: ["glutes", "quadriceps", "hamstrings"]
+        //         })
+        //         break;
 
-            case ("calf-raises"):
-                setSelectedExercise({
-                    title: "Calf Raises",
-                    musclesWorked: ["calves"]
-                })
-                break;
+        //     case ("glute-bridge"):
+        //         setSelectedExercise({
+        //             title: "Glute Bridge",
+        //             musclesWorked: ["glutes", "quadriceps", "hamstrings"]
+        //         })
+        //         break;
 
-            case ("kettle-bell-swing"):
-                setSelectedExercise({
-                    title: "Kettle-Bell Swing",
-                    musclesWorked: ["glutes", "hamstrings", "quadriceps"]
-                })
-                break;
+        //     case ("goblet-squat"):
+        //         setSelectedExercise({
+        //             title: "Goblet Squat",
+        //             musclesWorked: ["glutes", "quadriceps", "hamstrings"]
+        //         })
+        //         break;
 
-            case ("hip-thrust"):
-                setSelectedExercise({
-                    title: "Hip Thrust",
-                    musclesWorked: ["glutes", "quadriceps", "hamstrings"]
-                })
-                break;
+        //     case ("face-pull"):
+        //         setSelectedExercise({
+        //             title: "Face Pull",
+        //             musclesWorked: ["shoulders", "trapezius", "lats"]
+        //         })
+        //         break;
 
-            case ("shoulder-press"):
-                setSelectedExercise({
-                    title: "Shoulder Press",
-                    musclesWorked: ["shoulders", "chest"]
-                })
-                break;
+        //     case ("calf-raises"):
+        //         setSelectedExercise({
+        //             title: "Calf Raises",
+        //             musclesWorked: ["calves"]
+        //         })
+        //         break;
 
-            case ("sit-up"):
-                setSelectedExercise({
-                    title: "Sit Up",
-                    musclesWorked: ["abs", "", "obliques"]
-                })
-                break;
+        //     case ("kettle-bell-swing"):
+        //         setSelectedExercise({
+        //             title: "Kettle-Bell Swing",
+        //             musclesWorked: ["glutes", "hamstrings", "quadriceps"]
+        //         })
+        //         break;
 
-            case ("hammer-curl"):
-                setSelectedExercise({
-                    title: "Hammer Curl",
-                    musclesWorked: ["biceps", "forearms"]
-                })
-                break;
+        //     case ("hip-thrust"):
+        //         setSelectedExercise({
+        //             title: "Hip Thrust",
+        //             musclesWorked: ["glutes", "quadriceps", "hamstrings"]
+        //         })
+        //         break;
 
-            case ("side-plank"):
-                setSelectedExercise({
-                    title: "Side Plank",
-                    musclesWorked: ["obliques", "abs"]
-                })
-                break;
+        //     case ("shoulder-press"):
+        //         setSelectedExercise({
+        //             title: "Shoulder Press",
+        //             musclesWorked: ["shoulders", "chest"]
+        //         })
+        //         break;
 
-            case ("push-up"):
-                setSelectedExercise({
-                    title: "Push Up",
-                    musclesWorked: ["chest", "", "shoulders"]
-                })
-                break;
+        //     case ("sit-up"):
+        //         setSelectedExercise({
+        //             title: "Sit Up",
+        //             musclesWorked: ["abs", "", "obliques"]
+        //         })
+        //         break;
 
-            case ("leg-extension"):
-                setSelectedExercise({
-                    title: "Leg Extension",
-                    musclesWorked: ["quadriceps"]
-                })
-                break;
+        //     case ("hammer-curl"):
+        //         setSelectedExercise({
+        //             title: "Hammer Curl",
+        //             musclesWorked: ["biceps", "forearms"]
+        //         })
+        //         break;
 
-            case ("tricep-extension"):
-                setSelectedExercise({
-                    title: "Tricep Extension",
-                    musclesWorked: ["triceps"]
-                })
-                break;
+        //     case ("side-plank"):
+        //         setSelectedExercise({
+        //             title: "Side Plank",
+        //             musclesWorked: ["obliques", "abs"]
+        //         })
+        //         break;
 
-            case ("lateral-raise"):
-                setSelectedExercise({
-                    title: "Lateral Raise",
-                    musclesWorked: ["shoulders"]
-                })
-                break;
+        //     case ("push-up"):
+        //         setSelectedExercise({
+        //             title: "Push Up",
+        //             musclesWorked: ["chest", "", "shoulders"]
+        //         })
+        //         break;
 
-            case ("chin-up"):
-                setSelectedExercise({
-                    title: "Chin Up",
-                    musclesWorked: ["biceps", "lats", "trapezius"]
-                })
+        //     case ("leg-extension"):
+        //         setSelectedExercise({
+        //             title: "Leg Extension",
+        //             musclesWorked: ["quadriceps"]
+        //         })
+        //         break;
 
-            default:
-                break;
-        }
+        //     case ("tricep-extension"):
+        //         setSelectedExercise({
+        //             title: "Tricep Extension",
+        //             musclesWorked: ["triceps"]
+        //         })
+        //         break;
+
+        //     case ("lateral-raise"):
+        //         setSelectedExercise({
+        //             title: "Lateral Raise",
+        //             musclesWorked: ["shoulders"]
+        //         })
+        //         break;
+
+        //     case ("chin-up"):
+        //         setSelectedExercise({
+        //             title: "Chin Up",
+        //             musclesWorked: ["biceps", "lats", "trapezius"]
+        //         })
+
+        //     default:
+        //         break;
+        // }
     }
 
     function volumeIntToString(value: number) {
