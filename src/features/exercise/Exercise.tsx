@@ -17,7 +17,7 @@ export function Exercise() {
     const dispatch = useAppDispatch();
 
     const [selectedExercise, setSelectedExercise] = useState<IExercise>({
-        title: "Shoulder Press",
+        title: "shoulder-press",
         musclesWorked: ["shoulders", "chest"]
     });
     const [selectedVolume, setSelectedVolume] = useState<number>(1);
@@ -29,10 +29,10 @@ export function Exercise() {
     // musclesWorked are listed in order of intensity.
     function exerciseChange(value: string) {
 
-        const {title, musclesWorked} = {...exerciseName[value]};
+        const { musclesWorked } = { ...exerciseName[value] };
 
         setSelectedExercise({
-            title: title,
+            title: value,
             musclesWorked: musclesWorked
         })
 
@@ -209,6 +209,30 @@ export function Exercise() {
         }
     }
 
+    function exerciseListToUrl() {
+        const n = exerciseList.length;
+
+        const currentUrl = window.location.href;
+        const preQuery = currentUrl.split("?")[0];
+
+        let query = ""
+
+        if (n > 0) {
+
+            query = query + "?plan=";
+
+            for (let i = 0; i < n; i++) {
+                const name = exerciseList[i]["package"]["exercise"].title;
+                const volume = exerciseList[i].package.volume;
+                const id = exerciseName[name].id;
+                query = query + `${id}v${volume}`;
+            }
+
+        }
+
+        navigator.clipboard.writeText(preQuery + query);
+    }
+
     return (
 
         <div className="exercise-wrapper">
@@ -267,6 +291,9 @@ export function Exercise() {
                     <span>Exercise Preview: </span>
                     <input type="checkbox" defaultChecked onChange={(e) => { dispatch(toggle(!currentToggle)) }} />
                 </div>
+                <button onClick={() => {
+                    exerciseListToUrl();
+                }}>Share</button>
                 <button onClick={() => {
                     dispatch(toggleMenu(true))
                     dispatch(toggleSave(true))
