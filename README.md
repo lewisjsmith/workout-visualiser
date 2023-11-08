@@ -1,6 +1,6 @@
 # Workout Visualiser
-
 ## Live site available at: https://lewisjsmith.github.io/workout-visualiser/
+![Image of the Single Page App displaying an example workout.](docs/figure_1.png)
 
 ## Aims:
 
