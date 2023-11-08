@@ -77,7 +77,7 @@ export default function BodyFrame() {
                 if (exercise.package.exercise.musclesWorked.includes("hamstrings")) {
                     hamstringsTemp = (hamstringsTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("hamstrings") + 1)));
                 }
-                if (exercise.package.exercise.musclesWorked.includes("biceplatss")) {
+                if (exercise.package.exercise.musclesWorked.includes("lats")) {
                     latsTemp = (latsTemp + (exercise.package.volume / (exercise.package.exercise.musclesWorked.indexOf("lats") + 1)));
                 }
                 if (exercise.package.exercise.musclesWorked.includes("obliques")) {
