@@ -158,7 +158,7 @@ export function Exercise() {
                 <li><span style={{ fontWeight: "bold" }}>Exercise</span><span style={{ fontWeight: "bold" }}>Volume</span></li>
                 {exerciseList.map(ex => {
                     return <li key={ex.id}>
-                        <span>{ex.package.exercise.title}</span>
+                        <span style={{textTransform: "capitalize"}}>{ex.package.exercise.title.split("-").join(" ")}</span>
                         <span>{volumeIntToString(ex.package.volume)}</span>
                         <button onClick={() => {
                             dispatch(remove(ex.id))
