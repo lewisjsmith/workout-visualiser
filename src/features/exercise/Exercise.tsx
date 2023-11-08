@@ -135,7 +135,7 @@ export function Exercise() {
                     <input type="checkbox" defaultChecked onChange={(e) => { dispatch(toggle(!currentToggle)) }} />
                 </div>
 
-                <button className={copied ? "copied" : ""} style={{transition: "all 0.2s linear"}} onClick={() => {
+                <button className={copied ? "copied" : ""} onClick={() => {
                     exerciseListToUrl();
                     setCopied(true);
                     setTimeout(() => {

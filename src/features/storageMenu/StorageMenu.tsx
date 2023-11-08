@@ -12,7 +12,7 @@ import {
     set,
     selectExercise
 } from "../exercise/exerciseSlice"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function StorageMenu() {
 
@@ -23,6 +23,12 @@ export function StorageMenu() {
     const dispatch = useAppDispatch();
 
     const [saveName, setSaveName] = useState<string>("");
+    const [workoutList, setWorkoutList] = useState<string[]>([""]);
+
+    useEffect(() => {
+        const workouts = getWorkoutList();
+        setWorkoutList(workouts);
+    }, [])
 
     function saveWorkout(name: string, workout: Array<ExercisePackage>) {
         localStorage.setItem(name, JSON.stringify(workout))
@@ -35,14 +41,52 @@ export function StorageMenu() {
 
     function deleteWorkout(name: string) {
         localStorage.removeItem(name);
+        const workouts = getWorkoutList();
+        if (workouts.length > 0) {
+            setWorkoutList(workouts);
+        } else {
+            setWorkoutList([]);
+        }
+
+    }
+
+    function successfulSave() {
+        saveWorkout(saveName, currentWorkout)
+        dispatch(toggleMenu(false))
+        dispatch(toggleSave(false))
+        dispatch(toggleLoad(false))
+        const workouts = getWorkoutList();
+        if (workouts.length > 0) {
+            setWorkoutList(workouts);
+        } else {
+            setWorkoutList([]);
+        }
+    }
+
+    function successfulLoad(work: string | null) {
+        if (work) {
+            loadWorkout(work)
+            dispatch(toggleMenu(false))
+            dispatch(toggleSave(false))
+            dispatch(toggleLoad(false))
+        }
     }
 
     function getWorkoutList() {
-        const workouts = []
+
+        const workouts: string[] = []
+
         for (let i = 0; i < localStorage.length; i++) {
-            workouts.push(localStorage.key(i));
+
+            const item = localStorage.key(i);
+
+            if (item) {
+                workouts.push(item);
+            }
         }
+
         return workouts;
+
     }
 
     return (
@@ -66,10 +110,12 @@ export function StorageMenu() {
                         display: "flex",
                         gap: "1rem"
                     }}>
-                        <form action="" onSubmit={(e) => {e.preventDefault()}} style={{display: "flex", flexWrap: "nowrap", gap: "1rem"}}>
-                            <input name="workout-name" type="text" onChange={(e) => setSaveName(e.target.value)} required maxLength={13}/>
+                        <form action="" onSubmit={(e) => { e.preventDefault() }} style={{ display: "flex", flexWrap: "nowrap", gap: "1rem" }}>
+                            <input name="workout-name" type="text" onChange={(e) => setSaveName(e.target.value)} required maxLength={13} />
                             <button onClick={() => {
-                                saveName.length > 0 ? saveWorkout(saveName, currentWorkout) : {}
+                                saveName.length > 0 ?
+                                    successfulSave()
+                                    : {}
                             }}>Save</button>
                         </form>
                     </div>
@@ -77,7 +123,6 @@ export function StorageMenu() {
                 </div>
 
             </div>
-
 
             <div className="storage-menu-load"
                 style={showLoad ? {} : { visibility: "hidden", display: "none" }}>
@@ -88,24 +133,30 @@ export function StorageMenu() {
                     dispatch(toggleSave(false))
                     dispatch(toggleLoad(false))
                 }}>X</button>
-                {getWorkoutList().length > 0 && <ul>
-                    {getWorkoutList().map(work => {
+
+                {workoutList.length > 0 && <ul>
+
+                    {workoutList.map(work => {
                         return (
                             <li key={work}>
                                 {work}
                                 <button onClick={() => {
-                                    work ? loadWorkout(work) : {}
+                                    work ? successfulLoad(work) : {}
                                 }}>Load</button>
                                 <button onClick={() => {
                                     work ? deleteWorkout(work) : {}
                                 }}>Delete</button>
                             </li>);
                     })}
+
                 </ul>}
-                {getWorkoutList().length === 0 && <span style={{
+
+                {workoutList.length === 0 && <span style={{
                     position: "relative",
                     top: "3rem"
                 }}>No workouts found.</span>}
+
+
             </div>
         </div>
 
