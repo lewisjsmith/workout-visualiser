@@ -66,12 +66,13 @@ export function StorageMenu() {
                         display: "flex",
                         gap: "1rem"
                     }}>
-                        <input name="workout-name" type="text" onChange={(e) => setSaveName(e.target.value)} />
-                        <button onClick={() => {
-                            saveName.length > 0 ? saveWorkout(saveName, currentWorkout) : {}
-                        }}>Save</button>
+                        <form action="" onSubmit={(e) => {e.preventDefault()}} style={{display: "flex", flexWrap: "nowrap", gap: "1rem"}}>
+                            <input name="workout-name" type="text" onChange={(e) => setSaveName(e.target.value)} required maxLength={13}/>
+                            <button onClick={() => {
+                                saveName.length > 0 ? saveWorkout(saveName, currentWorkout) : {}
+                            }}>Save</button>
+                        </form>
                     </div>
-                    {/* Add length checks */}
 
                 </div>
 
