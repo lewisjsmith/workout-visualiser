@@ -16,9 +16,14 @@ body {
   --color-mid: invert(58%) sepia(12%) saturate(7196%) hue-rotate(2deg) brightness(105%) contrast(103%);
   --color-low: invert(79%) sepia(81%) saturate(526%) hue-rotate(356deg) brightness(102%) contrast(108%);
   --color-highlight: invert(72%) sepia(33%) saturate(3721%) hue-rotate(55deg) brightness(112%) contrast(106%);
+
+  font-family: "Montserrat";
 }
 
-#root {}
+#root {
+  box-sizing: border-box;
+  background-color: rgb(150, 222, 230);
+}
 
 h1 {
   font-size: 27px;
@@ -26,6 +31,7 @@ h1 {
 
 .app {
   box-sizing: border-box;
+
   padding: 2rem;
 
   display: flex;
@@ -36,10 +42,17 @@ h1 {
   gap: 1rem;
 
   position: relative;
+
+  background-color: white;
+
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
 }
 
 .page-title {
-  font-style: italic;
+  /* font-style: italic; */
+  text-wrap: nowrap;
 }
 
 .exercise-wrapper {
@@ -153,6 +166,10 @@ button:hover {
 }
 
 @media (min-width: 700px) {
+  #root {
+    /* padding: 2rem; */
+  }
+
   .app {
     display: grid;
     grid-template-rows: 1fr 4fr;
@@ -160,6 +177,8 @@ button:hover {
 
     padding: 3rem;
     object-fit: contain;
+
+    border-radius: 10px;
   }
 
   .page-title {
@@ -321,21 +340,23 @@ button:hover {
 .storage-menu-save,
 .storage-menu-load {
   background-color: white;
-  width: 80%;
   box-sizing: border-box;
   padding: 1rem;
   border-radius: 5px;
 }
 
+.storage-menu-save li,
+.storage-menu-load li {
+  text-wrap: nowrap;
+}
+
 .storage-menu-save {
-  height: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .save-interface {
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -344,6 +365,7 @@ button:hover {
 
 .save-interface input {
   border: 1px solid black;
+  padding: 0.5rem 1rem;
 }
 
 .menu-title {
@@ -380,8 +402,29 @@ button:hover {
 
 .storage-menu-load li {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 0.5rem;
   justify-self: center;
   align-items: center;
+}
+
+.storage-menu-load li button {
+  flex-shrink: 0;
+}
+
+@media (min-width: 700px) {
+
+  .storage-menu-save,
+  .storage-menu-load {
+    aspect-ratio: 1/1;
+  }
+}
+
+.copied {
+  color: white;
+  background-color: rgb(14, 223, 59);
+}
+
+.copied:hover {
+  background-color: rgb(13, 204, 54);
 }

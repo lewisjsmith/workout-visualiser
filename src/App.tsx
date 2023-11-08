@@ -1,7 +1,9 @@
-import { Exercise } from "./features/exercise/Exercise"
-import "./App.css"
-import BodyFrame from "./features/bodyFrame/BodyFrame"
-import { StorageMenu } from "./features/storageMenu/StorageMenu"
+import { Exercise } from "./features/exercise/Exercise";
+import "./App.css";
+import "./fonts/font.css";
+import "./fonts/Montserrat-Regular.ttf";
+import BodyFrame from "./features/bodyFrame/BodyFrame";
+import { StorageMenu } from "./features/storageMenu/StorageMenu";
 import { v4 as uuidv4 } from 'uuid';
 import { add } from "./features/exercise/exerciseSlice";
 import { useEffect } from "react";

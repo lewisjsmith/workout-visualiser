@@ -21,6 +21,7 @@ export function Exercise() {
         musclesWorked: ["shoulders", "chest"]
     });
     const [selectedVolume, setSelectedVolume] = useState<number>(1);
+    const [copied, setCopied] = useState<boolean>(false);
 
     useEffect(() => {
         dispatch(save(selectedExercise.musclesWorked));
@@ -35,165 +36,7 @@ export function Exercise() {
             title: value,
             musclesWorked: musclesWorked
         })
-
-        // switch (value) {
-
-        //     case ("deadlift"):
-        //         setSelectedExercise({
-        //             title: "Deadlift",
-        //             musclesWorked: ["trapezius", "glutes", "abs"]
-        //         })
-        //         break;
-
-        //     case ("barbell-squat"):
-        //         setSelectedExercise({
-        //             title: "Barbell Squat",
-        //             musclesWorked: ["glutes", "hamstrings", "lats"]
-        //         })
-        //         break;
-
-        //     case ("pull-up"):
-        //         setSelectedExercise({
-        //             title: "Pull Up",
-        //             musclesWorked: ["lats", "trapezius", "biceps"]
-        //         })
-        //         break;
-
-        //     case ("bench-press"):
-        //         setSelectedExercise({
-        //             title: "Bench Press",
-        //             musclesWorked: ["chest", "shoulders", "triceps"]
-        //         })
-        //         break;
-
-        //     case ("lunge"):
-        //         setSelectedExercise({
-        //             title: "Lunge",
-        //             musclesWorked: ["glutes", "hamstrings", "quadriceps"]
-        //         })
-        //         break;
-
-        //     case ("bent-over-row"):
-        //         setSelectedExercise({
-        //             title: "Bent-Over Row",
-        //             musclesWorked: ["lats", "trapezius", "shoulders"]
-        //         })
-        //         break;
-
-        //     case ("farmers-walk"):
-        //         setSelectedExercise({
-        //             title: "Farmers Walk",
-        //             musclesWorked: ["glutes", "quadriceps", "hamstrings"]
-        //         })
-        //         break;
-
-        //     case ("glute-bridge"):
-        //         setSelectedExercise({
-        //             title: "Glute Bridge",
-        //             musclesWorked: ["glutes", "quadriceps", "hamstrings"]
-        //         })
-        //         break;
-
-        //     case ("goblet-squat"):
-        //         setSelectedExercise({
-        //             title: "Goblet Squat",
-        //             musclesWorked: ["glutes", "quadriceps", "hamstrings"]
-        //         })
-        //         break;
-
-        //     case ("face-pull"):
-        //         setSelectedExercise({
-        //             title: "Face Pull",
-        //             musclesWorked: ["shoulders", "trapezius", "lats"]
-        //         })
-        //         break;
-
-        //     case ("calf-raises"):
-        //         setSelectedExercise({
-        //             title: "Calf Raises",
-        //             musclesWorked: ["calves"]
-        //         })
-        //         break;
-
-        //     case ("kettle-bell-swing"):
-        //         setSelectedExercise({
-        //             title: "Kettle-Bell Swing",
-        //             musclesWorked: ["glutes", "hamstrings", "quadriceps"]
-        //         })
-        //         break;
-
-        //     case ("hip-thrust"):
-        //         setSelectedExercise({
-        //             title: "Hip Thrust",
-        //             musclesWorked: ["glutes", "quadriceps", "hamstrings"]
-        //         })
-        //         break;
-
-        //     case ("shoulder-press"):
-        //         setSelectedExercise({
-        //             title: "Shoulder Press",
-        //             musclesWorked: ["shoulders", "chest"]
-        //         })
-        //         break;
-
-        //     case ("sit-up"):
-        //         setSelectedExercise({
-        //             title: "Sit Up",
-        //             musclesWorked: ["abs", "", "obliques"]
-        //         })
-        //         break;
-
-        //     case ("hammer-curl"):
-        //         setSelectedExercise({
-        //             title: "Hammer Curl",
-        //             musclesWorked: ["biceps", "forearms"]
-        //         })
-        //         break;
-
-        //     case ("side-plank"):
-        //         setSelectedExercise({
-        //             title: "Side Plank",
-        //             musclesWorked: ["obliques", "abs"]
-        //         })
-        //         break;
-
-        //     case ("push-up"):
-        //         setSelectedExercise({
-        //             title: "Push Up",
-        //             musclesWorked: ["chest", "", "shoulders"]
-        //         })
-        //         break;
-
-        //     case ("leg-extension"):
-        //         setSelectedExercise({
-        //             title: "Leg Extension",
-        //             musclesWorked: ["quadriceps"]
-        //         })
-        //         break;
-
-        //     case ("tricep-extension"):
-        //         setSelectedExercise({
-        //             title: "Tricep Extension",
-        //             musclesWorked: ["triceps"]
-        //         })
-        //         break;
-
-        //     case ("lateral-raise"):
-        //         setSelectedExercise({
-        //             title: "Lateral Raise",
-        //             musclesWorked: ["shoulders"]
-        //         })
-        //         break;
-
-        //     case ("chin-up"):
-        //         setSelectedExercise({
-        //             title: "Chin Up",
-        //             musclesWorked: ["biceps", "lats", "trapezius"]
-        //         })
-
-        //     default:
-        //         break;
-        // }
+        
     }
 
     function volumeIntToString(value: number) {
@@ -291,9 +134,15 @@ export function Exercise() {
                     <span>Exercise Preview: </span>
                     <input type="checkbox" defaultChecked onChange={(e) => { dispatch(toggle(!currentToggle)) }} />
                 </div>
-                <button onClick={() => {
+
+                <button className={copied ? "copied" : ""} style={{transition: "all 0.2s linear"}} onClick={() => {
                     exerciseListToUrl();
-                }}>Share</button>
+                    setCopied(true);
+                    setTimeout(() => {
+                        setCopied(false);
+                    }, 5000)
+                }}>{copied ? "Copied!" : "Share"}</button>
+
                 <button onClick={() => {
                     dispatch(toggleMenu(true))
                     dispatch(toggleSave(true))
